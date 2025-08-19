@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kas Masuk</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-2xl bg-white shadow-lg rounded-2xl p-6">
+    <h1 class="text-2xl font-bold text-center text-green-600 mb-4">📒 Catatan Kas Masuk</h1>
+
+    <div class="flex gap-2 mb-4">
+      <input id="keterangan" type="text" placeholder="Keterangan" 
+        class="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
+      <input id="jumlah" type="number" placeholder="Jumlah (Rp)" 
+        class="w-40 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
+      <button onclick="tambahData()" 
+        class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Tambah</button>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full border border-gray-300 rounded-lg overflow-hidden">
+        <thead>
+          <tr class="bg-green-500 text-white">
+            <th class="p-2">No</th>
+            <th class="p-2">Keterangan</th>
+            <th class="p-2">Jumlah (Rp)</th>
+            <th class="p-2">Tanggal</th>
+          </tr>
+        </thead>
+        <tbody id="tabelKas" class="text-center"></tbody>
+      </table>
+    </div>
+
+    <div id="totalKas" class="text-right font-bold text-lg text-green-700 mt-4">
+      Total Kas: Rp 0
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

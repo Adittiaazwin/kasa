@@ -1,0 +1,45 @@
+let dataKas = JSON.parse(localStorage.getItem("kas")) || [];
+
+function renderTabel() {
+  const tbody = document.getElementById("tabelKas");
+  tbody.innerHTML = "";
+  let total = 0;
+
+  dataKas.forEach((item, index) => {
+    let row = `
+      <tr class="border-b hover:bg-gray-50">
+        <td class="p-2">${index + 1}</td>
+        <td class="p-2">${item.keterangan}</td>
+        <td class="p-2">Rp ${item.jumlah.toLocaleString()}</td>
+        <td class="p-2">${item.tanggal}</td>
+      </tr>
+    `;
+    tbody.innerHTML += row;
+    total += item.jumlah;
+  });
+
+  document.getElementById("totalKas").innerText =
+    "Total Kas: Rp " + total.toLocaleString();
+}
+
+function tambahData() {
+  const keterangan = document.getElementById("keterangan").value;
+  const jumlah = parseInt(document.getElementById("jumlah").value);
+
+  if (!keterangan || isNaN(jumlah) || jumlah <= 0) {
+    alert("Harap isi keterangan dan jumlah dengan benar!");
+    return;
+  }
+
+  const tanggal = new Date().toLocaleDateString("id-ID");
+  dataKas.push({ keterangan, jumlah, tanggal });
+
+  localStorage.setItem("kas", JSON.stringify(dataKas));
+
+  document.getElementById("keterangan").value = "";
+  document.getElementById("jumlah").value = "";
+
+  renderTabel();
+}
+
+renderTabel();
